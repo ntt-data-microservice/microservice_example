@@ -23,8 +23,10 @@ public class AccountService {
     accounts.forEach(account -> System.out.println(account));
   }
   public void getAccountLambda() {
-    List<Account> accounts = accountApi.getAccountsList();
-    accounts.forEach(System.out::println);
+    //List<Account> accounts = accountApi.getAccountsList();
+    //accounts.forEach(System.out::println);
+    accountApi.getAccountsList()
+        .forEach(System.out::println);
   }
 
   public void getAccountsStreams() {
@@ -46,6 +48,23 @@ public class AccountService {
         .map(account -> account.getNumberAccount())
         .collect(Collectors.toList())
         .forEach(System.out::println);
+  }
+
+  public void getAccountsMapTrans() {
+    accountApi.getAccountsStream()
+        .filter(account -> account.getAmount() > 55)
+        .map(this::transAccount)
+        .collect(Collectors.toList())
+        .forEach(System.out::println);
+  }
+
+  private Account transAccount(Account account) {
+    int value = 10;
+    if (account.getAmount() > 70)
+      value = 20;
+    Account account1 = new Account(account.getId(), account.getNumberAccount(),
+        account.getAmount() * value);
+    return account1;
   }
 
 }

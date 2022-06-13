@@ -20,7 +20,8 @@ public class FunctionalProgrammingApplication {
 		//accountService.getAccountForeach();
 		//accountService.getAccountsStreams();
 		//accountService.getAccountsFilter();
-		accountService.getAccountsMap();
+		//accountService.getAccountsMap();
+		accountService.getAccountsMapTrans();
 	}
 
 }
